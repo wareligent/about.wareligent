@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Wareligent | Our Story & Mission</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #a855f7; /* Purple accents */
+            --accent-blue: #3b82f6;
+            --border-color: #1f2937;
+            --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Hero Background Glow */
+        .bg-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168,85,247,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 8%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-btn:hover {
+            color: var(--text-main);
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f8fafc, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section Block */
+        .section-block {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .section-block p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        @media(min-width: 600px) {
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .avatar-fallback {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-color));
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .team-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .team-card span {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .team-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 80px;
+        }
+
+        footer a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Wareligent™</span>
+        </a>
+        <a href="https://vercel.app" target="_blank" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Main Search
+        </a>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>About Our Venture</h1>
+            <p>Building a faster, smarter, and privacy-focused web ecosystem for a better tomorrow.</p>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="section-block">
+            <div class="section-title">
+                <i class="fa-solid fa-bullseye"></i>
+                <h2>Our Mission</h2>
+            </div>
+            <p>Wareligent™ is a next-generation technology startup committed to transforming how the world interacts with information. Our flagship minimalist search engine is engineered to deliver highly accurate web content intelligently, while keeping user data strictly private.</p>
+            <p>We firmly believe in a privacy-first web where users can explore topics, space updates, and artificial intelligence developments seamlessly without being tracked or heavily monetized by corporate tech giants.</p>
+        </div>
+
+        <!-- Team Section -->
+        <div class="section-block">
+            <div class="section-title">
+                <i class="fa-solid fa-users"></i>
+                <h2>The Pillars of Wareligent</h2>
+            </div>
+            <p>Behind this innovation is a young visionary and the ultimate support pillars driving the dream into reality.</p>
+            
+            <div class="team-grid">
+                <!-- Founder -->
+                <div class="team-card">
+                    <div class="avatar-fallback">B</div>
+                    <h3>Baijid</h3>
+                    <span>Founder & CEO</span>
+                    <p>A 13-year-old developer passionate about web architectures and information systems.</p>
+                </div>
+
+                <!-- Mother -->
+                <div class="team-card">
+                    <div class="avatar-fallback">M</div>
+                    <h3>Beauty</h3>
+                    <span>Chief Supporter</span>
+                    <p>Providing endless prayers, guidance, and emotional backbone to scale the tech dream.</p>
+                </div>
+
+                <!-- Father -->
+                <div class="team-card">
+                    <div class="avatar-fallback">F</div>
+                    <h3>Kenan</h3>
+                    <span>Advisory Pillar</span>
+                    <p>The core motivation and guiding force shaping the entrepreneurial journey.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="section-block">
+            <div class="section-title">
+                <i class="fa-solid fa-envelope"></i>
+                <h2>Global Relations & Contact</h2>
+            </div>
+            <p>We are always eager to connect with fellow software engineers, investors, and technology enthusiasts worldwide as we scale our network operations.</p>
+            <p><strong style="color: var(--text-main);">Official Email:</strong> wareligent@gmail.com</p>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <a href="https://vercel.app">Wareligent™</a>. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
