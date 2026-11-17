@@ -8,17 +8,30 @@
 
 <title>About Wareligent — Technology & Innovation</title>
 
-<meta name="description" content="Discover Wareligent, an independent technology company focused on search technology, web innovation and building useful digital experiences.">
+<meta name="description" content="Discover Wareligent, an independent technology company exploring search technology, web innovation and meaningful digital experiences.">
+<meta name="keywords" content="Wareligent, Technology, Search Engine, Web Innovation, Digital Technology">
+<meta name="author" content="Wareligent">
+
+<meta property="og:title" content="Wareligent — Building the Digital Future">
+<meta property="og:description" content="Explore Wareligent, an independent technology company.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://about-wareligent.vercel.app">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
 :root {
-  --black: #111318;
-  --gray: #6b7280;
+  --black: #111827;
+  --dark: #101827;
   --blue: #3568f5;
+  --blue-light: #eaf0ff;
+  --gray: #687386;
   --light: #f7f9fc;
-  --border: #e8ebf0;
+  --border: #e8ecf3;
+  --white: #ffffff;
+  --shadow: 0 20px 60px rgba(20,40,90,.07);
 }
 
 * {
@@ -29,13 +42,19 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 85px;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   color: var(--black);
-  background: white;
+  background: var(--white);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 a {
@@ -47,85 +66,173 @@ button {
   font-family: inherit;
 }
 
-/* NAVBAR */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(53,104,245,.4);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: #dce6ff;
+  color: #1747c5;
+}
+
+/* SCROLL PROGRESS */
+
+.progress {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg,#3568f5,#80a6ff);
+}
+
+/* NAVIGATION */
 
 header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
   background: rgba(255,255,255,.88);
   backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(230,230,230,.7);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(230,234,242,.8);
+  transition: .3s;
+}
+
+header.scrolled {
+  box-shadow: 0 5px 30px rgba(0,0,0,.045);
 }
 
 .navbar {
   max-width: 1200px;
   height: 76px;
-  margin: auto;
   padding: 0 25px;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  font-size: 25px;
+  font-size: 26px;
   font-weight: 900;
-  letter-spacing: -1.5px;
+  letter-spacing: -1.8px;
 }
 
-.logo span {
+.logo span,
+.footer-brand span {
   color: var(--blue);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 30px;
 }
 
 .nav-links a {
-  font-size: 13px;
-  color: #555b66;
+  color: #626b7a;
+  font-size: 12px;
+  font-weight: 600;
   transition: .3s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--blue);
 }
 
-.nav-btn {
+.nav-links .nav-btn {
   border: 1px solid var(--black);
-  padding: 12px 20px;
   border-radius: 30px;
-  font-size: 12px !important;
-  transition: .3s;
+  padding: 12px 21px;
+  color: var(--black);
 }
 
-.nav-btn:hover {
+.nav-links .nav-btn:hover {
   background: var(--black);
-  color: white !important;
-  transform: translateY(-3px);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .menu-btn {
   display: none;
-  background: none;
+  background: white;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 9px 12px;
+  border-radius: 12px;
+  width: 43px;
+  height: 43px;
   font-size: 20px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+/* BUTTONS */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 25px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--black);
+  transition: .3s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+
+.btn-primary {
+  background: var(--black);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.btn-outline {
+  background: white;
+  color: var(--black);
+}
+
+.btn-outline:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.arrow {
+  transition: transform .3s;
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
 }
 
 /* HERO */
 
 .hero {
-  min-height: 750px;
-  padding: 170px 25px 100px;
+  min-height: 760px;
+  padding: 160px 25px 115px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -134,23 +241,23 @@ header {
 .hero::before {
   content: "";
   position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle,rgba(53,104,245,.10),transparent 70%);
-  top: 0;
+  width: 700px;
+  height: 700px;
+  top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  animation: pulse 6s infinite alternate;
+  background: radial-gradient(circle,rgba(53,104,245,.12),transparent 68%);
+  pointer-events: none;
+  animation: heroGlow 7s ease-in-out infinite alternate;
 }
 
-@keyframes pulse {
-  from { transform: translateX(-50%) scale(.85); }
-  to { transform: translateX(-50%) scale(1.2); }
+@keyframes heroGlow {
+  from { opacity: .5; transform: translateX(-50%) scale(.85); }
+  to { opacity: 1; transform: translateX(-50%) scale(1.15); }
 }
 
 .hero-content {
-  max-width: 850px;
+  max-width: 900px;
   position: relative;
   z-index: 2;
 }
@@ -158,39 +265,41 @@ header {
 .tag {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 9px 17px;
-  border: 1px solid #e4e9f4;
-  border-radius: 30px;
+  gap: 10px;
+  padding: 10px 17px;
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  background: rgba(255,255,255,.75);
   color: #536078;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 1.7px;
+  font-weight: 800;
   margin-bottom: 35px;
 }
 
 .dot {
   height: 7px;
   width: 7px;
-  background: #3976ff;
+  background: var(--blue);
   border-radius: 50%;
-  box-shadow: 0 0 12px #3976ff;
+  box-shadow: 0 0 12px var(--blue);
 }
 
 .hero h1 {
-  font-size: clamp(45px, 8vw, 88px);
-  line-height: 1.06;
-  letter-spacing: -5px;
+  font-size: clamp(48px,8vw,94px);
   font-weight: 900;
-  margin-bottom: 25px;
+  letter-spacing: -6px;
+  line-height: 1.04;
+  margin-bottom: 28px;
 }
 
 .hero h1 span {
-  background: linear-gradient(100deg,#3268f5,#7399ff,#3268f5);
+  background: linear-gradient(100deg,#3268f5,#83a5ff,#3268f5);
   background-size: 200%;
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
-  animation: gradient 5s linear infinite;
+  animation: gradient 6s linear infinite;
 }
 
 @keyframes gradient {
@@ -198,55 +307,40 @@ header {
 }
 
 .hero p {
-  max-width: 600px;
+  max-width: 630px;
   margin: auto;
-  font-size: 16px;
-  line-height: 1.9;
+  font-size: 15px;
+  line-height: 2;
   color: var(--gray);
 }
 
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin-top: 38px;
   flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 37px;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
+.hero-bottom {
+  display: flex;
   justify-content: center;
-  gap: 10px;
-  padding: 16px 27px;
-  border-radius: 40px;
-  font-size: 13px;
+  align-items: center;
+  gap: 9px;
+  margin-top: 65px;
+  color: #8993a3;
+  font-size: 10px;
+  letter-spacing: 1.5px;
   font-weight: 700;
-  border: 1px solid var(--black);
-  transition: .35s;
 }
 
-.btn-primary {
-  background: var(--black);
-  color: white;
+.scroll-line {
+  width: 30px;
+  height: 1px;
+  background: #b9c6dc;
 }
 
-.btn-outline {
-  background: white;
-  color: var(--black);
-}
-
-.btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0,0,0,.12);
-}
-
-.btn-primary:hover {
-  background: var(--blue);
-  border-color: var(--blue);
-}
-
-/* COMMON */
+/* COMMON SECTIONS */
 
 section {
   padding: 110px 25px;
@@ -259,15 +353,15 @@ section {
 
 .section-label {
   color: var(--blue);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2.7px;
   margin-bottom: 20px;
 }
 
 .section-title {
-  font-size: clamp(32px,5vw,52px);
-  letter-spacing: -2.5px;
+  font-size: clamp(33px,5vw,54px);
+  letter-spacing: -2.8px;
   line-height: 1.15;
   font-weight: 800;
   margin-bottom: 20px;
@@ -275,9 +369,9 @@ section {
 
 .section-desc {
   color: var(--gray);
-  font-size: 15px;
-  line-height: 1.9;
-  max-width: 620px;
+  font-size: 14px;
+  line-height: 1.95;
+  max-width: 640px;
 }
 
 /* ABOUT */
@@ -288,68 +382,100 @@ section {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 65px;
+  grid-template-columns: 1.05fr .95fr;
   align-items: center;
+  gap: 65px;
+}
+
+.about-text {
+  color: var(--gray);
+  font-size: 13px;
+  line-height: 2.1;
+  margin-top: 18px;
 }
 
 .about-visual {
-  min-height: 370px;
+  min-height: 380px;
   border-radius: 25px;
-  background: linear-gradient(145deg,#101827,#172b50);
+  background: linear-gradient(145deg,#101827,#1b315a);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .about-visual::before,
 .about-visual::after {
   content: "";
   position: absolute;
-  width: 260px;
-  height: 260px;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.13);
   border-radius: 50%;
-  animation: rotate 15s linear infinite;
+  width: 270px;
+  height: 270px;
+  animation: rotate 25s linear infinite;
 }
 
 .about-visual::after {
-  width: 360px;
-  height: 360px;
+  width: 390px;
+  height: 390px;
   animation-direction: reverse;
+}
+
+.visual-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(53,104,245,.3);
+  filter: blur(75px);
+  border-radius: 50%;
+}
+
+.visual-logo {
+  color: white;
+  font-size: clamp(35px,5vw,53px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  position: relative;
+  z-index: 2;
+}
+
+.visual-logo span {
+  color: #83a8ff;
+}
+
+.visual-caption {
+  position: absolute;
+  bottom: 25px;
+  color: #aabbd9;
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 @keyframes rotate {
   to { transform: rotate(360deg); }
 }
 
-.visual-logo {
-  font-size: 52px;
-  font-weight: 900;
-  letter-spacing: -3px;
-  color: white;
-  z-index: 2;
+/* PRINCIPLES */
+
+.principles {
+  padding-top: 100px;
 }
 
-.visual-logo span {
-  color: #72a0ff;
+.principles-heading {
+  text-align: center;
 }
 
-.about-text {
-  color: var(--gray);
-  font-size: 14px;
-  line-height: 2;
-  margin-top: 15px;
+.principles-heading .section-desc {
+  margin: auto;
 }
-
-/* MISSION */
 
 .mission-grid {
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  gap: 22px;
+  gap: 20px;
   margin-top: 45px;
 }
 
@@ -357,113 +483,184 @@ section {
   padding: 38px;
   border: 1px solid var(--border);
   border-radius: 20px;
-  transition: .35s;
   background: white;
+  transition: .35s;
 }
 
 .info-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-7px);
   border-color: #b9cbff;
-  box-shadow: 0 20px 45px rgba(30,60,120,.07);
+  box-shadow: var(--shadow);
 }
 
 .card-icon {
-  height: 48px;
-  width: 48px;
-  background: #edf2ff;
-  border-radius: 14px;
+  width: 49px;
+  height: 49px;
   display: grid;
   place-items: center;
-  font-size: 22px;
-  margin-bottom: 24px;
+  border-radius: 15px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 24px;
+  margin-bottom: 25px;
 }
 
 .info-card h3 {
-  font-size: 20px;
+  font-size: 19px;
   margin-bottom: 13px;
 }
 
 .info-card p {
   color: var(--gray);
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 2;
+}
+
+/* PRINCIPLES EXTRA */
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.value-card {
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  transition: .3s;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  border-color: #b9cbff;
+}
+
+.value-card .value-number {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.value-card h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.value-card p {
+  color: var(--gray);
+  font-size: 11px;
   line-height: 1.9;
 }
 
 /* TECHNOLOGY */
 
 .tech {
-  background: #101827;
+  background: var(--dark);
   color: white;
-  text-align: center;
 }
 
 .tech .section-desc {
-  margin: auto;
   color: #aab5c8;
+}
+
+.tech-heading {
+  text-align: center;
+}
+
+.tech-heading .section-desc {
+  margin: auto;
 }
 
 .tech-boxes {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 20px;
+  gap: 18px;
   margin-top: 55px;
-  text-align: left;
 }
 
 .tech-card {
-  border: 1px solid rgba(255,255,255,.13);
-  padding: 32px;
+  padding: 33px 28px;
+  border: 1px solid rgba(255,255,255,.12);
   border-radius: 18px;
   background: rgba(255,255,255,.035);
   transition: .35s;
 }
 
 .tech-card:hover {
-  background: rgba(255,255,255,.09);
-  transform: translateY(-8px);
+  transform: translateY(-7px);
+  background: rgba(255,255,255,.075);
   border-color: #5986ff;
 }
 
 .tech-card .number {
   color: #82a5ff;
-  font-size: 12px;
-  font-weight: 800;
-  margin-bottom: 30px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 32px;
 }
 
 .tech-card h3 {
-  font-size: 19px;
-  margin-bottom: 14px;
+  font-size: 18px;
+  margin-bottom: 13px;
 }
 
 .tech-card p {
   color: #aab5c8;
-  font-size: 13px;
-  line-height: 1.9;
+  font-size: 12px;
+  line-height: 2;
 }
 
-/* SEARCH */
+/* SEARCH PLATFORM */
 
 .search-section {
   text-align: center;
   background: #f7f9fc;
 }
 
+.search-section .section-desc {
+  margin: auto;
+}
+
 .search-card {
   max-width: 850px;
   margin: 45px auto 0;
-  padding: 55px 25px;
+  padding: 65px 25px;
   background: white;
   border: 1px solid var(--border);
   border-radius: 24px;
+  position: relative;
+  overflow: hidden;
   box-shadow: 0 20px 60px rgba(0,0,0,.035);
 }
 
+.search-card::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(53,104,245,.07);
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.search-content {
+  position: relative;
+  z-index: 2;
+}
+
 .search-logo {
-  font-size: 40px;
+  font-size: 43px;
   font-weight: 900;
-  letter-spacing: -2px;
-  margin-bottom: 15px;
+  letter-spacing: -2.5px;
+  margin-bottom: 12px;
 }
 
 .search-logo span {
@@ -472,50 +669,87 @@ section {
 
 .search-card p {
   color: var(--gray);
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 28px;
+}
+
+.platform-tag {
+  display: inline-block;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  color: #71809a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 
 /* FOUNDER */
 
 .founder-grid {
   display: grid;
-  grid-template-columns: .7fr 1.3fr;
+  grid-template-columns: .75fr 1.25fr;
   align-items: center;
-  gap: 60px;
+  gap: 65px;
 }
 
 .founder-avatar {
-  min-height: 310px;
+  min-height: 330px;
   border-radius: 22px;
   background: linear-gradient(145deg,#eaf0ff,#f7f9ff);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 95px;
-  color: #3568f5;
+  color: var(--blue);
+  font-size: 110px;
   font-weight: 900;
+  position: relative;
+  overflow: hidden;
 }
 
-.founder-name {
-  font-size: 35px;
-  font-weight: 800;
-  letter-spacing: -1.5px;
-  margin: 12px 0;
+.founder-avatar::before {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border: 1px solid rgba(53,104,245,.15);
+  border-radius: 50%;
+}
+
+.founder-avatar::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(53,104,245,.15);
+  border-radius: 50%;
+}
+
+.founder-avatar span {
+  position: relative;
+  z-index: 2;
 }
 
 .founder-role {
   color: var(--blue);
-  font-size: 12px;
-  font-weight: 800;
+  font-size: 10px;
+  font-weight: 900;
   letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.founder-name {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin-bottom: 15px;
 }
 
 .founder-desc {
   color: var(--gray);
-  line-height: 1.9;
-  font-size: 14px;
-  margin-top: 15px;
+  font-size: 13px;
+  line-height: 2;
 }
 
 /* CONTACT */
@@ -529,29 +763,36 @@ section {
   margin: auto;
 }
 
+.contact-box {
+  margin-top: 35px;
+}
+
 .contact-mail {
-  display: inline-block;
-  margin-top: 30px;
-  color: var(--blue);
-  font-weight: 700;
-  font-size: 16px;
-  padding: 15px 23px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 25px;
   border: 1px solid #dbe5ff;
   border-radius: 40px;
+  color: var(--blue);
+  background: white;
+  font-size: 14px;
+  font-weight: 700;
   transition: .3s;
 }
 
 .contact-mail:hover {
-  background: #eaf0ff;
-  transform: scale(1.04);
+  transform: translateY(-4px);
+  border-color: var(--blue);
+  box-shadow: 0 10px 30px rgba(53,104,245,.1);
 }
 
 /* FOOTER */
 
 footer {
-  background: #101827;
+  background: var(--dark);
   color: white;
-  padding: 50px 25px 25px;
+  padding: 55px 25px 25px;
 }
 
 .footer-inner {
@@ -559,37 +800,34 @@ footer {
   margin: auto;
   display: flex;
   justify-content: space-between;
-  gap: 30px;
+  gap: 35px;
   flex-wrap: wrap;
-  padding-bottom: 35px;
+  padding-bottom: 40px;
 }
 
 .footer-brand {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 900;
-  letter-spacing: -1px;
-}
-
-.footer-brand span {
-  color: #76a0ff;
+  letter-spacing: -1.5px;
 }
 
 .footer-text {
   color: #aab5c8;
-  font-size: 12px;
+  font-size: 11px;
   margin-top: 12px;
+  line-height: 1.8;
 }
 
 .footer-links {
   display: flex;
-  gap: 25px;
+  gap: 24px;
   flex-wrap: wrap;
   align-items: center;
 }
 
 .footer-links a {
-  font-size: 12px;
   color: #c4cede;
+  font-size: 11px;
   transition: .3s;
 }
 
@@ -599,17 +837,53 @@ footer {
 
 .copyright {
   border-top: 1px solid rgba(255,255,255,.12);
-  padding-top: 22px;
+  padding-top: 23px;
   text-align: center;
   color: #8591a5;
-  font-size: 11px;
+  font-size: 10px;
 }
 
-/* SCROLL ANIMATION */
+/* BACK TO TOP */
+
+.back-top {
+  position: fixed;
+  bottom: 25px;
+  right: 22px;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #dce5f8;
+  border-radius: 50%;
+  background: white;
+  color: var(--blue);
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: .3s;
+  z-index: 900;
+  box-shadow: 0 5px 25px rgba(0,0,0,.08);
+}
+
+.back-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-top:hover {
+  background: var(--blue);
+  color: white;
+  transform: translateY(-4px);
+}
+
+/* REVEAL ANIMATION */
 
 .reveal {
   opacity: 0;
-  transform: translateY(35px);
+  transform: translateY(28px);
   transition: opacity .8s ease, transform .8s ease;
 }
 
@@ -618,49 +892,106 @@ footer {
   transform: translateY(0);
 }
 
-/* MOBILE */
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+  .nav-links {
+    gap: 17px;
+  }
+
+  .about-grid {
+    gap: 35px;
+  }
+
+  .founder-grid {
+    gap: 35px;
+  }
+
+  .hero h1 {
+    letter-spacing: -4px;
+  }
+}
 
 @media(max-width:768px) {
   .navbar {
     height: 68px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 24px;
   }
 
   .menu-btn {
     display: block;
   }
 
+  .menu-btn:active {
+    transform: scale(.9);
+  }
+
   .nav-links {
-    display: none;
-    position: absolute;
+    display: flex;
+    position: fixed;
     top: 68px;
     left: 0;
     width: 100%;
+    height: calc(100dvh - 68px);
     background: white;
     flex-direction: column;
-    padding: 25px;
-    border-bottom: 1px solid var(--border);
-    gap: 25px;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 35px 25px;
+    gap: 0;
+    border-top: 1px solid var(--border);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform .35s ease, visibility .35s;
+    overflow-y: auto;
   }
 
   .nav-links.show {
-    display: flex;
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+    padding: 20px 5px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links .nav-btn {
+    text-align: center;
+    margin-top: 22px;
+    border: 1px solid var(--black);
+    padding: 16px;
   }
 
   .hero {
-    min-height: 700px;
-    padding-top: 130px;
+    min-height: 690px;
+    padding: 130px 22px 80px;
   }
 
   .hero h1 {
-    letter-spacing: -2.5px;
+    font-size: clamp(47px,11vw,75px);
+    letter-spacing: -3px;
   }
 
   .hero p {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .hero-bottom {
+    margin-top: 50px;
   }
 
   section {
     padding: 80px 22px;
+  }
+
+  .section-title {
+    letter-spacing: -1.8px;
   }
 
   .about-grid,
@@ -669,7 +1000,15 @@ footer {
     gap: 35px;
   }
 
+  .about-visual {
+    min-height: 280px;
+  }
+
   .mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .values-grid {
     grid-template-columns: 1fr;
   }
 
@@ -677,12 +1016,24 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .about-visual {
-    min-height: 280px;
+  .info-card {
+    padding: 30px;
   }
 
   .founder-avatar {
-    min-height: 230px;
+    min-height: 250px;
+  }
+
+  .founder-name {
+    font-size: 32px;
+  }
+
+  .search-card {
+    padding: 50px 18px;
+  }
+
+  .search-logo {
+    font-size: 36px;
   }
 
   .footer-inner {
@@ -690,15 +1041,50 @@ footer {
   }
 
   .footer-links {
-    gap: 20px;
+    gap: 18px;
+  }
+
+  .back-top {
+    right: 15px;
+    bottom: 18px;
   }
 }
 
+@media(max-width:380px) {
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .tag {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .btn {
+    padding: 14px 19px;
+    font-size: 11px;
+  }
+
+  .contact-mail {
+    font-size: 12px;
+  }
+}
+
+/* REDUCED MOTION */
+
 @media(prefers-reduced-motion:reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>
@@ -706,32 +1092,44 @@ footer {
 
 <body>
 
+<div class="progress" id="progress"></div>
+
 <!-- NAVIGATION -->
 
-<header>
+<header id="header">
   <nav class="navbar">
 
-    <a href="#" class="logo">
+    <a href="#" class="logo" aria-label="Wareligent Home">
       wareligent<span>.</span>
     </a>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="navLinks">
+      ☰
+    </button>
 
     <div class="nav-links" id="navLinks">
+
       <a href="#about">About</a>
       <a href="#mission">Our Vision</a>
       <a href="#technology">Technology</a>
       <a href="#founder">Founder</a>
       <a href="#contact" class="nav-btn">Contact Us ↗</a>
+
     </div>
 
   </nav>
 </header>
 
+<main>
 
 <!-- HERO -->
 
-<section class="hero">
+<section class="hero" id="home">
 
   <div class="hero-content reveal">
 
@@ -752,21 +1150,29 @@ footer {
     </p>
 
     <div class="hero-buttons">
+
       <a href="#about" class="btn btn-primary">
-        Discover Wareligent ↗
+        Discover Wareligent <span class="arrow">↗</span>
       </a>
 
       <a href="https://wareligent.vercel.app"
-         target="_blank" rel="noopener"
+         target="_blank"
+         rel="noopener noreferrer"
          class="btn btn-outline">
-        Explore Search Engine →
+        Explore Search Engine <span class="arrow">→</span>
       </a>
+
+    </div>
+
+    <div class="hero-bottom">
+      <span class="scroll-line"></span>
+      EXPLORE OUR WORLD
+      <span class="scroll-line"></span>
     </div>
 
   </div>
 
 </section>
-
 
 <!-- ABOUT -->
 
@@ -793,28 +1199,41 @@ footer {
         exploring modern web solutions and building
         innovative digital products that can make
         technology more accessible and useful.
+
+        <br><br>
+
+        We believe meaningful innovation begins with
+        curiosity, experimentation and the courage to
+        turn ideas into reality.
       </p>
 
     </div>
 
     <div class="about-visual reveal">
+
+      <div class="visual-glow"></div>
+
       <div class="visual-logo">
         wareligent<span>.</span>
       </div>
+
+      <div class="visual-caption">
+        TECHNOLOGY • INNOVATION • FUTURE
+      </div>
+
     </div>
 
   </div>
 
 </section>
 
+<!-- MISSION AND VISION -->
 
-<!-- MISSION -->
-
-<section id="mission">
+<section id="mission" class="principles">
 
   <div class="container">
 
-    <div class="reveal">
+    <div class="principles-heading reveal">
 
       <div class="section-label">02 — OUR DIRECTION</div>
 
@@ -861,10 +1280,54 @@ footer {
 
     </div>
 
+    <!-- COMPANY PRINCIPLES -->
+
+    <div class="values-grid">
+
+      <div class="value-card reveal">
+
+        <div class="value-number">01 / CURIOSITY</div>
+
+        <h3>Always Exploring</h3>
+
+        <p>
+          We believe learning and curiosity are essential
+          to discovering new technological possibilities.
+        </p>
+
+      </div>
+
+      <div class="value-card reveal">
+
+        <div class="value-number">02 / CREATIVITY</div>
+
+        <h3>Think Differently</h3>
+
+        <p>
+          We encourage creative thinking and fresh
+          approaches to solving digital challenges.
+        </p>
+
+      </div>
+
+      <div class="value-card reveal">
+
+        <div class="value-number">03 / PURPOSE</div>
+
+        <h3>Build with Purpose</h3>
+
+        <p>
+          We aim to create technology that is useful,
+          meaningful and accessible.
+        </p>
+
+      </div>
+
+    </div>
+
   </div>
 
 </section>
-
 
 <!-- TECHNOLOGY -->
 
@@ -872,7 +1335,7 @@ footer {
 
   <div class="container">
 
-    <div class="reveal">
+    <div class="tech-heading reveal">
 
       <div class="section-label">03 — WHAT WE EXPLORE</div>
 
@@ -897,7 +1360,8 @@ footer {
 
         <p>
           Developing our search platform with a focus
-          on making information easier to discover.
+          on making information easier to discover
+          and explore.
         </p>
 
       </div>
@@ -910,7 +1374,8 @@ footer {
 
         <p>
           Exploring modern web technologies and
-          creating useful digital experiences.
+          creating useful digital experiences
+          for the connected world.
         </p>
 
       </div>
@@ -934,10 +1399,9 @@ footer {
 
 </section>
 
+<!-- SEARCH PLATFORM -->
 
-<!-- SEARCH ENGINE -->
-
-<section class="search-section">
+<section class="search-section" id="platform">
 
   <div class="container reveal">
 
@@ -954,24 +1418,32 @@ footer {
 
     <div class="search-card">
 
-      <div class="search-logo">
-        wareligent<span>.</span>
+      <div class="search-content">
+
+        <div class="platform-tag">
+          WARELIGENT PLATFORM
+        </div>
+
+        <div class="search-logo">
+          wareligent<span>.</span>
+        </div>
+
+        <p>Search. Discover. Explore.</p>
+
+        <a href="https://wareligent.vercel.app"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-primary">
+          Visit Wareligent Search <span class="arrow">↗</span>
+        </a>
+
       </div>
-
-      <p>Search. Discover. Explore.</p>
-
-      <a href="https://wareligent.vercel.app"
-         target="_blank" rel="noopener"
-         class="btn btn-primary">
-        Visit Wareligent Search ↗
-      </a>
 
     </div>
 
   </div>
 
 </section>
-
 
 <!-- FOUNDER -->
 
@@ -980,7 +1452,7 @@ footer {
   <div class="container founder-grid">
 
     <div class="founder-avatar reveal">
-      W
+      <span>W</span>
     </div>
 
     <div class="reveal">
@@ -1008,6 +1480,12 @@ footer {
         an innovative technology company
         through creativity, learning and
         continuous development.
+
+        <br><br>
+
+        For him, every great technological journey
+        begins with an idea and the determination
+        to bring it to life.
       </p>
 
     </div>
@@ -1015,7 +1493,6 @@ footer {
   </div>
 
 </section>
-
 
 <!-- CONTACT -->
 
@@ -1034,15 +1511,20 @@ footer {
       We would love to hear from you.
     </p>
 
-    <a href="mailto:wareligent@gmail.com"
-       class="contact-mail">
-      wareligent@gmail.com ↗
-    </a>
+    <div class="contact-box">
+
+      <a href="mailto:wareligent@gmail.com"
+         class="contact-mail">
+        wareligent@gmail.com <span class="arrow">↗</span>
+      </a>
+
+    </div>
 
   </div>
 
 </section>
 
+</main>
 
 <!-- FOOTER -->
 
@@ -1052,9 +1534,9 @@ footer {
 
     <div>
 
-      <div class="footer-brand">
+      <a href="#" class="footer-brand">
         wareligent<span>.</span>
-      </div>
+      </a>
 
       <p class="footer-text">
         Exploring Technology. Building Possibilities.
@@ -1066,12 +1548,15 @@ footer {
 
       <a href="#about">About</a>
 
+      <a href="#mission">Our Vision</a>
+
       <a href="#technology">Technology</a>
 
       <a href="#founder">Founder</a>
 
       <a href="https://wareligent.vercel.app"
-         target="_blank" rel="noopener">
+         target="_blank"
+         rel="noopener noreferrer">
         Search Engine ↗
       </a>
 
@@ -1089,63 +1574,184 @@ footer {
 
 </footer>
 
+<!-- BACK TO TOP -->
+
+<button
+  class="back-top"
+  id="backTop"
+  aria-label="Back to top"
+  title="Back to top">
+  ↑
+</button>
 
 <script>
 
-// MOBILE MENU
+/* ELEMENTS */
 
+const header = document.getElementById("header");
 const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
+const backTop = document.getElementById("backTop");
+const progress = document.getElementById("progress");
+
+/* MOBILE NAVIGATION */
+
+function closeMenu() {
+  navLinks.classList.remove("show");
+  menuBtn.textContent = "☰";
+  menuBtn.setAttribute("aria-expanded", "false");
+  menuBtn.setAttribute("aria-label", "Open navigation");
+  document.body.classList.remove("menu-open");
+}
 
 menuBtn.addEventListener("click", () => {
 
-  navLinks.classList.toggle("show");
+  const isOpen = navLinks.classList.toggle("show");
 
-  menuBtn.textContent =
-    navLinks.classList.contains("show") ? "✕" : "☰";
+  menuBtn.textContent = isOpen ? "✕" : "☰";
+
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+
+  menuBtn.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation" : "Open navigation"
+  );
+
+  document.body.classList.toggle("menu-open", isOpen);
 
 });
 
 document.querySelectorAll(".nav-links a").forEach(link => {
 
-  link.addEventListener("click", () => {
+  link.addEventListener("click", closeMenu);
 
-    navLinks.classList.remove("show");
-    menuBtn.textContent = "☰";
+});
 
+document.addEventListener("keydown", event => {
+
+  if (event.key === "Escape") {
+    closeMenu();
+  }
+
+});
+
+/* SCROLL EFFECTS */
+
+function handleScroll() {
+
+  const scrollTop =
+    window.scrollY || document.documentElement.scrollTop;
+
+  const scrollHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  const percentage =
+    scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+  progress.style.width = percentage + "%";
+
+  header.classList.toggle("scrolled", scrollTop > 30);
+
+  backTop.classList.toggle("visible", scrollTop > 450);
+
+}
+
+window.addEventListener("scroll", handleScroll, {
+  passive: true
+});
+
+handleScroll();
+
+/* BACK TO TOP */
+
+backTop.addEventListener("click", () => {
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   });
 
 });
 
+/* SCROLL REVEAL */
 
-// SCROLL REVEAL ANIMATION
+const revealElements =
+  document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver((entries) => {
+if ("IntersectionObserver" in window) {
 
-  entries.forEach(entry => {
+  const observer = new IntersectionObserver(entries => {
 
-    if (entry.isIntersecting) {
+    entries.forEach(entry => {
 
-      entry.target.classList.add("active");
+      if (entry.isIntersecting) {
 
-      observer.unobserve(entry.target);
+        entry.target.classList.add("active");
 
-    }
+        observer.unobserve(entry.target);
 
+      }
+
+    });
+
+  }, {
+    threshold: 0.10
   });
 
-}, {
-  threshold: 0.12
-});
+  revealElements.forEach(element => {
+    observer.observe(element);
+  });
 
-document.querySelectorAll(".reveal").forEach(element => {
+} else {
 
-  observer.observe(element);
+  revealElements.forEach(element => {
+    element.classList.add("active");
+  });
 
-});
+}
 
+/* ACTIVE NAVIGATION */
 
-// DYNAMIC COPYRIGHT YEAR
+const sections = document.querySelectorAll(
+  "#about, #mission, #technology, #founder, #contact"
+);
+
+const navItems = document.querySelectorAll(
+  ".nav-links a[href^='#']"
+);
+
+if ("IntersectionObserver" in window) {
+
+  const sectionObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+
+        navItems.forEach(link => {
+
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + entry.target.id
+          );
+
+        });
+
+      }
+
+    });
+
+  }, {
+    rootMargin: "-30% 0px -60% 0px"
+  });
+
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+}
+
+/* COPYRIGHT YEAR */
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
